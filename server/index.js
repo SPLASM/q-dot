@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //checks if session already exists, if it does, adds req.session to req object
 app.use(session({
   store: new RedisStore({
-    host: process.env.REDISURL || '104.237.154.8',
+    host: process.env.REDISTOGO_URL || '104.237.154.8',
     port: process.env.REDISPORT || 6379
   }),
   secret: process.env.SESSIONSECRET || 'nyancat',

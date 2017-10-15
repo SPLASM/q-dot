@@ -1,5 +1,5 @@
 const db = require('../database/index.js');
-const { api_key } = require('./credentials/googleAPI.js');
+const api_key = process.env.GMAPS_API || require('./credentials/googleAPI.js').api_key;
 const request = require('request');
 const express = require('express');
 
