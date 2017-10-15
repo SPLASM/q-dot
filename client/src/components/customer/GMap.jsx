@@ -2,26 +2,21 @@ import React from 'react';
 import $ from 'jquery';
 import balloon from '../../../dist/images/map_marker.png';
 import scriptLoader from 'react-async-script-loader';
+let api_key;
+$.ajax({
+  method: 'GET',
+  url: '/gmapsAPI',
+  success: key => {
+    api_key = key;
+  },
+  failure: (error) => {
+    console.log('failed to fetch gmaps api key', error);
+  }
+});
 
 class GMap extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      api_key: ''
-    };
-  }
-
-  componentWillMount() {
-    $.ajax({
-      method: 'GET',
-      url: '/gmapsAPI',
-      success: key => {
-        this.setState({ api_key: key });
-      },
-      failure: (error) => {
-        console.log('failed to fetch gmaps api key', error);
-      }
-    });
   }
 
   componentWillReceiveProps({ isScriptLoadSucceed }) {
@@ -59,5 +54,5 @@ class GMap extends React.Component {
 };
 
 export default scriptLoader(
-  [`https://maps.googleapis.com/maps/api/js?key=${this.state.api_key}`]
+  [`https://maps.googleapis.com/maps/api/js?key=${api_key}`]
 )(GMap);
