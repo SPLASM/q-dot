@@ -288,7 +288,8 @@ app.delete('/announcements/:id', (req, res) => {
 
 //drop database and add dummy data
 app.post('/dummydata', (req, res) => {
-  dummyData.dropDB()
+  console.log(req.headers.host);
+  dummyData.dropDB(req.headers.host)
     .then(() => {
       res.sendStatus(200);
     })

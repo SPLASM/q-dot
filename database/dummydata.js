@@ -2,6 +2,7 @@ const db = require('./index.js');
 const dbQuery = require('../controller/index.js');
 const request = require('request');
 const dbQueueMenu = require('../controller/queue_menu.js');
+const path = require('path');
 
 const addToQueue = () => {
   return dbQuery.addToQueue({name: 'Tiffany', restaurantId: 1, size: 2, mobile: '4158475697'})
@@ -13,16 +14,16 @@ const addToQueue = () => {
     });
 };
 
-const addRestaurants = (cb) => {
-  return addRestaurant('San Francisco', 'Tempest', () => {
-    addRestaurant('San Francisco', 'House of Prime Rib', () => {
-      addRestaurant('San Francisco', 'Tsunami Panhandle', () => {
-        addRestaurant('San Francisco', 'Kitchen Story', () => {
-          addRestaurant('San Francisco', 'Burma Superstar', () => {
-            addRestaurant('San Francisco', 'State Bird Provisions', () => {
-              addRestaurant('San Francisco', 'Limon Rotisserie', () => {
-                addRestaurant('San Francisco', 'Nopa', () => {
-                  addRestaurant('San Francisco', 'Farmhouse Kitchen', () => {
+const addRestaurants = (host, cb) => {
+  return addRestaurant('San Francisco', 'Tempest', host, () => {
+    addRestaurant('San Francisco', 'House of Prime Rib', host, () => {
+      addRestaurant('San Francisco', 'Tsunami Panhandle', host, () => {
+        addRestaurant('San Francisco', 'Kitchen Story', host, () => {
+          addRestaurant('San Francisco', 'Burma Superstar', host, () => {
+            addRestaurant('San Francisco', 'State Bird Provisions', host, () => {
+              addRestaurant('San Francisco', 'Limon Rotisserie', host, () => {
+                addRestaurant('San Francisco', 'Nopa', host, () => {
+                  addRestaurant('San Francisco', 'Farmhouse Kitchen', host, () => {
                     cb();
                   })
                 })
@@ -43,9 +44,9 @@ const addOrders = () => {
     });
 }
 
-const addRestaurant = (location, term, cb) => {
+const addRestaurant = (location, term, host, cb) => {
   options = {
-    url: 'http://localhost:1337/yelp',
+    url: `http://${host}/yelp`,
     qs: {
       location: location,
       term: term
@@ -180,7 +181,7 @@ const addRewardQueues = () => {
 };
 
 
-const dropDB = () => {
+const dropDB = (host) => {
   return db.Queue.drop()
     .then(() => db.Reward.drop())
     .then(() => db.Customer.drop())
@@ -190,7 +191,7 @@ const dropDB = () => {
     .then(() => db.Manager.drop())
     .then(() => db.Restaurant.drop())
     .then(() => db.Restaurant.sync({force: true}))
-    .then(() => addRestaurants(() => {
+    .then(() => addRestaurants(host, () => {
       db.Manager.sync({force: true})
         .then(() => addManager())
         .then(() => db.ManagerAudit.sync({force: true}))
