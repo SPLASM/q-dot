@@ -19,16 +19,22 @@ const dummyQueues = require('../database/dummyQueues.js');
 const yelp = require('./yelp.js');
 const sendSMS = require('../helpers/sms.js');
 const requestDistance = require('./googleMaps.js');
+const REDISURL = process.env.REDISTOGO_URL;
+
+let redisOptions = {};
+if (REDISURL) {
+  redisOptions.url = REDISURL;
+} else {
+  redisOptions.host = '104.237.154.8';
+  redisOptions.port = 6379;
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //checks if session already exists, if it does, adds req.session to req object
 app.use(session({
-  store: new RedisStore({
-    host: process.env.REDISTOGO_URL || '104.237.154.8',
-    port: process.env.REDISPORT || 6379
-  }),
+  store: new RedisStore(redisOptions),
   secret: process.env.SESSIONSECRET || 'nyancat',
   cookie: {
     maxAge: 18000000

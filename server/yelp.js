@@ -1,5 +1,5 @@
 const db = require('../database/index.js');
-const yelpAPIKey = { access_token: process.env.YELP_API } || require('./credentials/credentials.js');
+const yelpAPIKey = process.env.YELP_API || require('./credentials/credentials.js').access_token;
 const request = require('request');
 const express = require('express');
 
@@ -8,7 +8,7 @@ const yelp = {
 	 	const options = {
 			url: 'https://api.yelp.com/v3/businesses/search?',
 			headers: {
-				Authorization: 'Bearer ' + yelpAPIKey.access_token
+				Authorization: 'Bearer ' + yelpAPIKey
 			},
 			qs: params
 		};
