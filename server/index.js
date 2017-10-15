@@ -75,10 +75,6 @@ app.get('*/queueInfo', (req, res, next) => {
   }
 });
 
-app.get('/customer', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/customer/index.html'));
-});
-
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 //this shows how you can get queue information from the cookie of a customer who has already queue up
