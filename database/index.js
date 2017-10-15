@@ -129,7 +129,7 @@ const Restaurant = db.define('restaurant', {
     defaultValue: 'Open'
   },
   image: Sequelize.STRING,
-  rating: Sequelize.INTEGER,
+  rating: Sequelize.DECIMAL,
   reviewCount: Sequelize.INTEGER,
   address: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,

@@ -4907,7 +4907,7 @@ small {
 }
 
 .card .card-content {
-  padding: 24px;
+  padding: 10px;
   border-radius: 0 0 2px 2px;
 }
 
@@ -6590,7 +6590,7 @@ textarea.materialize-textarea.validate + label:not(.label-icon).active {
 [type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label {
   position: relative;
-  padding-left: 35px;
+  padding-left: 10px;
   cursor: pointer;
   display: inline-block;
   height: 25px;
@@ -6629,9 +6629,9 @@ textarea.materialize-textarea.validate + label:not(.label-icon).active {
 }
 
 [type="radio"]:not(:checked) + label:before,
-[type="radio"]:not(:checked) + label:after {
+/*[type="radio"]:not(:checked) + label:after {
   border: 2px solid #5a5a5a;
-}
+}*/
 
 [type="radio"]:not(:checked) + label:after {
   -webkit-transform: scale(0);
@@ -6645,14 +6645,14 @@ textarea.materialize-textarea.validate + label:not(.label-icon).active {
 
 [type="radio"]:checked + label:after,
 [type="radio"].with-gap:checked + label:before,
-[type="radio"].with-gap:checked + label:after {
+/*[type="radio"].with-gap:checked + label:after {
   border: 2px solid #26a69a;
-}
+}*/
 
 [type="radio"]:checked + label:after,
-[type="radio"].with-gap:checked + label:after {
+/*[type="radio"].with-gap:checked + label:after {
   background-color: #26a69a;
-}
+}*/
 
 [type="radio"]:checked + label:after {
   -webkit-transform: scale(1.02);
@@ -9686,12 +9686,12 @@ nav li a {
   font-weight: 300;
   max-height: 38px;
   text-overflow: ellipsis;
-  display: -webkit-box;
+  /*display: -webkit-box;*/
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden !important;
   margin-left: -3px;
-  margin-top: -5px;
+  /*margin-top: -5px;*/
 }
 
 .card-content:first-child {
@@ -10102,4 +10102,12 @@ h1, h2, h3, h4, h5, .banner-title {
 
 #reward-table .material-icons {
   font-size: 60px;
+}
+
+.restaurantCardRight {
+  text-align: right;
+}
+
+.stars {
+  margin-top: 5px;
 }
