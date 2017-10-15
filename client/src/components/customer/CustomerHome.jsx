@@ -24,6 +24,7 @@ class CustomerHome extends React.Component {
       location: undefined,
       modalMap: undefined,
       travelTime: undefined,
+      size: 0
     };
   }
 
@@ -44,6 +45,10 @@ class CustomerHome extends React.Component {
         console.log('error fetching user data');
       }
     });
+  }
+
+  getGroupSize(size) {
+    this.setState({ size: size });
   }
 
   getRestaurantList(city) {
@@ -180,7 +185,7 @@ class CustomerHome extends React.Component {
 
         { this.state.modalMap && <MapModal apikey={api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
 
-        <QueueModal restaurant={this.state.currentRestaurant} />
+        <QueueModal restaurant={this.state.currentRestaurant} getGroupSize={size => this.getGroupSize(size)}/>
       </div>
     );
   }
