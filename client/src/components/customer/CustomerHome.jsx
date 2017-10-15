@@ -9,7 +9,6 @@ import MenuModal from './Modals/MenuModal.jsx';
 import MapModal from './Modals/MapModal.jsx';
 import $ from 'jquery';
 import scriptLoader from 'react-async-script-loader';
-const api_key = process.env.GMAPS_API || require('../../../../server/credentials/googleAPI.js').api_key;
 import { Link } from 'react-router-dom';
 
 class CustomerHome extends React.Component {
@@ -22,8 +21,22 @@ class CustomerHome extends React.Component {
       modalRestaurant: undefined,
       location: undefined,
       modalMap: undefined,
-      travelTime: undefined
+      travelTime: undefined,
+      api_key: ''
     };
+  }
+
+  componentWillMount() {
+    $.ajax({
+      method: 'GET',
+      url: '/gmapsAPI',
+      success: key => {
+        this.setState({ api_key: key });
+      },
+      failure: (error) => {
+        console.log('failed to fetch gmaps api key', error);
+      }
+    });
   }
 
   componentDidMount() {
@@ -127,7 +140,7 @@ class CustomerHome extends React.Component {
                 <GMap
                   you={!!this.state.location}
                   location={this.state.location}
-                  apiKey={api_key}
+                  apiKey={this.state.api_key}
                 />
               </div>
 

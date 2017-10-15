@@ -20,6 +20,7 @@ const yelp = require('./yelp.js');
 const sendSMS = require('../helpers/sms.js');
 const requestDistance = require('./googleMaps.js');
 const REDISURL = process.env.REDISTOGO_URL;
+const gmaps_api = process.env.GMAPS_API || require('./credentials/googleAPI.js').api_key;
 
 let redisOptions = {};
 if (REDISURL) {
@@ -590,6 +591,8 @@ app.get('/rewards', (req, res) => {
       });
   }
 });
+
+app.get('/gmapsAPI', (req, res) => res.send(gmaps_api));
 
 app.get('*', (req, res) => {
   if (req.session && req.session.queueInfo) {
