@@ -167,7 +167,7 @@ class CustomerHome extends React.Component {
 
         { this.state.modalRestaurant && <MenuModal modalRestaurant={this.state.modalRestaurant}/> }
 
-        { this.state.modalMap && <MapModal apikey={api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
+        { this.state.modalMap && <MapModal apikey={this.state.api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
       </div>
     );
   }
@@ -176,5 +176,5 @@ class CustomerHome extends React.Component {
 // export default CustomerHome;
 
 export default scriptLoader(
-  [`https://maps.googleapis.com/maps/api/js?key=${api_key}`]
+  [`https://maps.googleapis.com/maps/api/js?key=AIzaSyAZcBYx6q5OMe1pL7JrJr8853Z3lP6IRs0`]
 )(CustomerHome);
