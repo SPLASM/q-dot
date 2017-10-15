@@ -2,17 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 import balloon from '../../../dist/images/map_marker.png';
 import scriptLoader from 'react-async-script-loader';
-let api_key;
-$.ajax({
-  method: 'GET',
-  url: '/gmapsAPI',
-  success: key => {
-    api_key = key;
-  },
-  failure: (error) => {
-    console.log('failed to fetch gmaps api key', error);
-  }
-});
 
 class GMap extends React.Component {
   constructor(props) {
@@ -41,7 +30,7 @@ class GMap extends React.Component {
       }
 
       $('#rest-map').on('shown.bs.modal', () => {
-        google.maps.event.trigger(this.map, 'resize')
+        google.maps.event.trigger(this.map, 'resize');
       });
     }
   }
@@ -51,8 +40,8 @@ class GMap extends React.Component {
       <div ref="map" style={{width:'100%', height:'100%', border: '1ps solid lightgray'}}></div>
     );
   }
-};
+}
 
 export default scriptLoader(
-  [`https://maps.googleapis.com/maps/api/js?key=${api_key}`]
+  [`https://maps.googleapis.com/maps/api/js?key=AIzaSyAZcBYx6q5OMe1pL7JrJr8853Z3lP6IRs0`]
 )(GMap);
