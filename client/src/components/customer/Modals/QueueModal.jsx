@@ -28,7 +28,9 @@ class QueueModal extends React.Component {
               <GroupSizeSelector getGroupSize={size => this.getGroupSize(size)}/>
             </div>
             <div className="modal-footer inline">
-              <button type="button" className="btn btn-default">Add to Queue?</button>
+              <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}>
+                <button type="button" className="btn btn-default">Add to Queue?</button>
+              </Link>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
