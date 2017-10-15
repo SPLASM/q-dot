@@ -11,7 +11,7 @@ class CustomerApp extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     $.ajax({
       url: '/userdata',
       type: 'GET',
