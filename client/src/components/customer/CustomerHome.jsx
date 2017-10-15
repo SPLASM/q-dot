@@ -78,7 +78,7 @@ class CustomerHome extends React.Component {
     $.ajax({
       url: `./menu/${restaurantId}`,
       success: (menu) => {
-        this.showModal.call(this, menu)
+        this.showModal.call(this, menu);
       },
       error: (err) => {
         console.log(err);

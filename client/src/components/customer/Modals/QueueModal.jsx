@@ -1,7 +1,7 @@
 import React from 'react';
 import GroupSizeSelector from '../GroupSizeSelector.jsx';
 import RestaurantCard from '../RestaurantCard.jsx';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class QueueModal extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class QueueModal extends React.Component {
               <GroupSizeSelector getGroupSize={size => this.getGroupSize(size)}/>
             </div>
             <div className="modal-footer inline">
-              <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}>
+              <Link to={`/restaurant/${this.props.restaurant.name}/${this.props.restaurant.id}`}>
                 <button type="button" className="btn btn-default">Add to Queue?</button>
               </Link>
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
