@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import balloon from '../../../dist/images/map_marker.png';
 import scriptLoader from 'react-async-script-loader';
-const { api_key } = require('../../../../server/credentials/googleAPI.js');
+const api_key = process.env.GMAPS_API || require('../../../../server/credentials/googleAPI.js').api_key;
 
 class GMap extends React.Component {
   constructor(props) {

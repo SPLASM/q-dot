@@ -586,7 +586,7 @@ app.get('/rewards', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  if (req.session.queueInfo) {
+  if (req.session && req.session.queueInfo) {
     res.redirect(`/customer/queueinfo?queueId=${req.session.queueInfo.queueId}`);
   } else {
     res.redirect('/customer');

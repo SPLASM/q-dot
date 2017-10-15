@@ -9,7 +9,7 @@ import MenuModal from './Modals/MenuModal.jsx';
 import MapModal from './Modals/MapModal.jsx';
 import $ from 'jquery';
 import scriptLoader from 'react-async-script-loader';
-const { api_key } = require('../../../../server/credentials/googleAPI.js');
+const api_key = process.env.GMAPS_API || require('../../../../server/credentials/googleAPI.js').api_key;
 import { Link } from 'react-router-dom';
 
 class CustomerHome extends React.Component {
