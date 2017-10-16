@@ -19,7 +19,8 @@ class QueueInfo extends React.Component {
       },
       ready: false,
       modalRestaurant: undefined,
-      modalOrdered: undefined
+      modalOrdered: undefined,
+      queueReward: false
     };
     // socket initialize
     this.socket = io();
@@ -37,6 +38,8 @@ class QueueInfo extends React.Component {
   getCurrentCustomerId() {
     let windowUrl = window.location.href;
     let id = Number(new URLSearchParams(window.location.search).get('queueId'));
+    let user = new URLSearchParams(window.location.search).get('user');
+    console.log(user);
     if (!id) {
       $.ajax({
         method: 'GET',
@@ -58,6 +61,24 @@ class QueueInfo extends React.Component {
           this.setState({ currentCustomer: data });
           // report queueId to server socket
           this.socket.emit('customer report', id);
+        },
+        failure: (error) => {
+          console.log('failed to grab queue data for customer', error);
+        }
+      });
+    }
+    if (user) {
+      $.ajax({
+        method: 'GET',
+        url: '/rewards',
+        success: data => {
+          // console.log('successfully grabbed queue data for customer', data);
+          if (data.queueCount >= 10) {
+            console.log(data);
+            this.setState({
+              queueReward: true
+            });
+          }
         },
         failure: (error) => {
           console.log('failed to grab queue data for customer', error);
@@ -154,7 +175,7 @@ class QueueInfo extends React.Component {
             </div>
         }
 
-        { this.state.modalRestaurant ? <MenuModal order removeOrder={this.removeOrder.bind(this)} addOrder={this.addOrder.bind(this)} modalOrdered={this.state.modalOrdered} modalRestaurant={this.state.modalRestaurant}/> : '' }
+        { this.state.modalRestaurant ? <MenuModal order removeOrder={this.removeOrder.bind(this)} addOrder={this.addOrder.bind(this)} modalOrdered={this.state.modalOrdered} modalRestaurant={this.state.modalRestaurant} reward={this.state.queueReward}/> : '' }
 
       </div>
     );

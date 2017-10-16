@@ -88,7 +88,7 @@ class SelectedRestaurant extends React.Component {
       success: (data) => {
         console.log('this was a successful post request', data);
         this.customerInfoSubmitted(data.queueId, data.position);
-        window.location.replace(`/customer/queueinfo?queueId=${data.queueId}`);
+        window.location.replace(`/customer/queueinfo?queueId=${data.queueId}&user=${data.user}`);
       },
       failure: (error) => {
         console.log('something went wrong with the post request', error);

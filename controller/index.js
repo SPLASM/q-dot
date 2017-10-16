@@ -217,6 +217,20 @@ const getCustomerRewardInfo = userId => {
   });
 };
 
+const updateCustomerRewardInfo = (userId, options) => {
+  let updateParameters = {};
+  if (options.queueClaim) {
+    updateParameters.queueClaim = options.queueClaim;
+  }
+  if (options.reservationClaim) {
+    updateParameters.reservationClaim = options.reservationClaim;
+  }
+
+  return db.Reward.update(updateParameters, {where: {
+    managerId: userId
+  }});
+};
+
 // get info for one manager
 const getManagerInfo = (username) => {
   return db.Manager.findOne({
@@ -263,5 +277,6 @@ module.exports = {
   getCustomerRewardInfo,
   addRewardData,
   updateRestaurantImage,
-  getWaitTime
+  getWaitTime,
+  updateCustomerRewardInfo
 };
