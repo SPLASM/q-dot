@@ -318,12 +318,21 @@ app.post('/queues', (req, res) => {
   dbQuery.addToQueue(req.body)
     .then(response => {
       let result = {};
+      result.queueId = response.queueId;
+      result.size = response.size;
+      result.position = response.position;
+      result.queueInFrontCount = response.queueCount;
+      result.wait = response.wait;
+      result.queueInFrontList = response.queueList;
       if (req.user) {
         dbQuery.findLoggedCustomer(req.session.passport.user)
           .then(customer => {
             result.name = customer.name;
             result.mobile = customer.mobile;
             result.email = customer.email;
+            result.user = req.user.username;
+            req.session.queueInfo = result;
+            res.send(result);
           });
       } else {
         result.name = helpers.nameFormatter(req.body.name);
@@ -331,16 +340,9 @@ app.post('/queues', (req, res) => {
         if (req.body.email) {
           result.email = req.body.email;
         }
+        req.session.queueInfo = result;
+        res.send(result);
       }
-      result.queueId = response.queueId;
-      result.size = response.size;
-      result.position = response.position;
-      result.queueInFrontCount = response.queueCount;
-      result.wait = response.wait;
-      result.queueInFrontList = response.queueList;
-      req.session.queueInfo = result;
-      console.log(result);
-      res.send(result);
       //automatically update manager side client
       socketUpdateManager(req.body.restaurantId);
     })

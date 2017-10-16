@@ -10119,3 +10119,27 @@ h1, h2, h3, h4, h5, .banner-title {
 .stars {
   margin-top: 5px;
 }
+
+.getRewardBtn {
+  background-color: #10BF7A;
+  font-weight: bold;
+}
+
+.claimedRewardBtn {
+  font-size: 28px;
+  padding: 5px;
+  z-index: 5;
+  margin-bottom: 0 !important;
+  margin-top: 30px;
+}
+
+.claimedRewardSpan {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: normal;
+  padding: 10px;
+  z-index: 5;
+  margin-bottom: 0 !important;
+  margin-top: 30px;
+  font-family: 'Raleway', sans-serif !important;
+}
