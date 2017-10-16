@@ -3,6 +3,7 @@ import CustomerListEntry from './CustomerListEntry.jsx';
 import _ from 'lodash';
 import $ from 'jquery';
 require('webpack-jquery-ui/sortable');
+require('jquery-ui-touch-punch');
 import AddToQueue from './AddToQueue.jsx';
 import OrdersModal from './Modals/OrdersModal.jsx';
 
