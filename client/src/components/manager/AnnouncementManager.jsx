@@ -176,6 +176,7 @@ class AnnouncementManager extends React.Component {
             </div>
           </div>
         </div>
+        <h3>Announcements</h3>
         <div className="panel panel-default">
           <div className="table-responsive">
             <table className="table table-striped">
