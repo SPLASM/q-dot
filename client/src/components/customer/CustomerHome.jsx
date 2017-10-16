@@ -138,7 +138,7 @@ class CustomerHome extends React.Component {
               <div className="col-xs-12" key={restaurant.id}>
                 <div className="col-xs-12">
                   <div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-3 col-md-offset-3">Announcements ({restaurant.announcements.length})</button>
+                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-2">Announcements ({restaurant.announcements.length})</button>
                     <button onClick={this.showMap.bind(this, restaurant)} className="col-xs-12 col-sm-4 col-md-3">Map</button>
                     <button onClick={this.getMenu.bind(this, restaurant.id)} className="col-xs-12 col-sm-4 col-md-3">Menu</button>
                   </div>
