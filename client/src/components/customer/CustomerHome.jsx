@@ -168,11 +168,14 @@ class CustomerHome extends React.Component {
               : ''}
             <h4 style={{marginTop: '50px'}} className="col-xs-12 text-center">Help me queue up at...</h4>
 
-            {this.state.restaurantList.map(restaurant => (
-              <div className="col-xs-12" key={restaurant.id}>
+            {this.state.restaurantList.map(restaurant => {
+              let active = restaurant.announcements.filter((announce) => {
+                return announce.status === 'active';
+              });
+              return(<div className="col-xs-12" key={restaurant.id}>
                 <div className="col-xs-12">
                   <div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-2 modalBtn">Announcements ({restaurant.announcements.length})</button>
+                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-2 modalBtn">Announcements ({active.length})</button>
                     <button onClick={this.showMap.bind(this, restaurant)} className="col-xs-12 col-sm-4 col-md-3 modalBtn">Map</button>
                     <button onClick={this.getMenu.bind(this, restaurant.id)} className="col-xs-12 col-sm-4 col-md-3 modalBtn">Menu</button>
                   </div>
@@ -187,7 +190,7 @@ class CustomerHome extends React.Component {
                   : <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
                 }
               </div>
-            ))}
+            )})}
 
           </div>
         </div>
