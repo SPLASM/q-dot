@@ -26,13 +26,11 @@ const RewardModal = props =>
                     <td><i className="material-icons">merge_type</i></td>
                     <td>Queue Reservation</td>
                     <td className="reward-description">
-                      Restaurant doesn't take reservations? Schedule a
+                      Restaurant doesn't take reservations? We'll automatically
                       <br/>
-                      time you want to be there and we'll automatically
+                      put your name on the list. Just give your self enough time
                       <br/>
-                      put you in the queue so your table will likely be
-                      <br/>
-                      ready within 10 minutes!
+                      to find parking, it's a real nightmare.
                     </td>
                   </tr> : null
                 }
@@ -41,11 +39,11 @@ const RewardModal = props =>
                     <td><i className="material-icons">local_dining</i></td>
                     <td>Free Appetizer</td>
                     <td className="reward-description">
-                      You certainly don't have commitment issues! You've
+                      You've done a good job showing up when your table was
                       <br/>
-                      shown up when called enough to earn an appetizer
+                      ready. We appreciate you not having commitment issues,
                       <br/>
-                      on us!
+                      so enjoy a free appetizer on us.
                     </td>
                   </tr> : null
                 }
