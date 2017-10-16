@@ -4852,49 +4852,20 @@ small {
 
 .card .card-image {
   position: relative;
-}
-
-.card .card-image img {
-  display: block;
-  border-radius: 2px 2px 0 0;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: -20px;
-  bottom: 0;
   width: 100%;
-  vertical-align: bottom;
-  overflow: hidden;
+  height: 254px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-@media only screen and (min-width: 601px) {
-  .card .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: -80px;
-    bottom: 0;
-    width: 100%;
-    vertical-align: bottom;
-    overflow: hidden;
-  }
+.card-bottom {
+  width: 100%;
+  height: 100px;
 }
 
-@media only screen and (min-width: 1101px) {
-  .card .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: -110px;
-    bottom: 0;
-    width: 100%;
-    vertical-align: bottom;
-    overflow: hidden;
-  }
+.restaurantCardLeft, .restaurantCardRight {
+  margin-top: 10px;
 }
 
 .card .card-image .card-title {
@@ -4909,6 +4880,8 @@ small {
 .card .card-content {
   padding: 10px;
   border-radius: 0 0 2px 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .card .card-content p {
@@ -9718,6 +9691,7 @@ nav li a {
   border: 0;
 }
 
+
 @media (min-width: 601px) {
   .restaurant-info-container {
     width: 690px;
@@ -9944,6 +9918,7 @@ nav li a {
     background-color: #053C5E !important;
   }
 
+
   .date-info {
 
     font-size: 18px !important;
@@ -10070,6 +10045,23 @@ nav li a {
   margin: 10px auto;
   border-radius: 10px;
 }
+
+@media (max-width: 782px) and (min-width: 768px) {
+  .modalBtn {
+    width: 50% !important;
+  }
+  .modalBtn:first-child {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 769px) {
+  /*.card-bottom {
+    height: 150%;
+    background-color: white;
+  }*/
+}
+
 
 body, .date-info {
   font-family: 'Raleway', sans-serif !important;
