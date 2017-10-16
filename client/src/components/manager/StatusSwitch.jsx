@@ -1,15 +1,18 @@
 import React from 'react';
 
 const StatusSwitch = (props) => {
-  
+
   return (
-    <div className="nav navbar-nav">
-      <span className="active">Status: {props.status === 'Open' ? 'Open' : 'Close'}</span>
-      <button type="button" className="btn btn-primary navbar-btn" data-toggle="modal" data-target="#close-queue-warning">
-        {props.status === 'Open' 
-          ? <i className="fa fa-ban fa-fw" aria-hidden="true"></i> 
-          : <i className="fa fa-check fa-fw" aria-hidden="true"></i>}
-        {props.status === 'Open' ? 'Close' : 'Open'} Queue</button>
+    <div className="col-xs-12">
+      <span className="active col-xs-12 col-sm-2 text-center" style={{padding: '15px'}}>Status: {props.status === 'Open' ? 'Open' : 'Close'}</span>
+      <div className="col-sm-10">
+        <button type="button" className="btn btn-primary col-xs-12 col-sm-6" data-toggle="modal" data-target="#close-queue-warning">
+          {props.status === 'Open'
+            ? <i className="fa fa-ban fa-fw" aria-hidden="true"></i>
+            : <i className="fa fa-check fa-fw" aria-hidden="true"></i>}
+          {props.status === 'Open' ? 'Close' : 'Open'} Queue</button>
+        <button className="btn btn-danger col-xs-12 col-sm-6" onClick={e => location.href = '/logout'}><i className="fa fa-sign-out fa-fw" aria-hidden="true"></i>Logout</button>
+      </div>
 
       <div id="close-queue-warning" className="modal fade" role="dialog">
         <div className="modal-dialog">

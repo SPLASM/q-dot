@@ -4,6 +4,42 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
+nav {
+  margin-bottom: 0;
+  position:fixed !important;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  z-index: 10;
+  background: white;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+nav ul, nav div, nav span, nav a {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+nav button {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 5px;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border: 3px solid white !important;
+}
+
+nav .link {
+  text-transform: uppercase;
+}
+
 #number-in-queue {
   font-size: 100px;
   text-align: center;
@@ -12,19 +48,6 @@ body {
 .warning-content {
   font-size: 30px;
   text-align: center;
-}
-
-.navbar-btn {
-  margin-left: 15px;
-}
-
-.navbar {
-  margin-bottom: 0;
-  position:fixed;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  z-index: 10;
-  background: white;
 }
 
 .jumbotron {

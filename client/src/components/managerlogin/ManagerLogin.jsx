@@ -71,7 +71,7 @@ class ManagerLogin extends React.Component {
               value={this.state.password}
               type='password'
               className='form-control col-xs-12'
-              placeholder='Password'
+              placeholder='password'
               required
               onChange={(e) => this.updateInputFields(e, 'password')}
             />

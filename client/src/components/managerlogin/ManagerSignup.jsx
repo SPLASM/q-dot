@@ -87,7 +87,7 @@ class ManagerSignup extends React.Component {
             value={this.state.password}
             type='password'
             className='form-control'
-            placeholder='Password'
+            placeholder='password'
             required
             onChange={(e) => this.updateInputFields(e, 'password')}
           />
@@ -96,7 +96,7 @@ class ManagerSignup extends React.Component {
             value={this.state.city}
             type='text'
             className='form-control col-xs-12'
-            placeholder='City'
+            placeholder='city'
             required
             onChange={(e) => this.updateInputFields(e, 'city')}
           />
@@ -106,7 +106,7 @@ class ManagerSignup extends React.Component {
             type='text'
             list = 'restaurants'
             className='form-control col-xs-12'
-            placeholder='Restaurant'
+            placeholder='restaurant'
             required
             onChange={(e) => this.updateInputFields(e, 'restaurant')}
           />
