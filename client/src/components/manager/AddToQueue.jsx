@@ -51,7 +51,7 @@ class AddToQueue extends React.Component {
   render () {
     return (
       <div>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#add-to-queue"><i className="fa fa-plus fa-fw" aria-hidden="true"></i>  Add To Queue</button>
+        <button type="button" className="btn btn-primary addQueue" data-toggle="modal" data-target="#add-to-queue"><i className="fa fa-plus fa-fw" aria-hidden="true"></i>  Add To Queue</button>
         <div id="add-to-queue" className="modal fade" role="dialog">
           <div className="modal-dialog">
             <div className="modal-content">

@@ -30,7 +30,9 @@ class GMap extends React.Component {
       }
 
       $('#rest-map').on('shown.bs.modal', () => {
+        let center = this.map.getCenter();
         google.maps.event.trigger(this.map, 'resize');
+        this.map.setCenter(center);
       });
     }
   }

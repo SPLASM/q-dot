@@ -4768,7 +4768,7 @@ small {
 
 .card.small .card-content, .card.medium .card-content, .card.large .card-content {
   max-height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .card.small .card-action, .card.medium .card-action, .card.large .card-action {
@@ -4852,63 +4852,22 @@ small {
 
 .card .card-image {
   position: relative;
-}
-
-.card .card-image img {
-  display: block;
-  border-radius: 2px 2px 0 0;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: -20px;
-  bottom: 0;
   width: 100%;
-  vertical-align: bottom;
-  overflow: hidden;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-@media only screen and (min-width: 601px) {
-  .card .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: -80px;
-    bottom: 0;
-    width: 100%;
-    vertical-align: bottom;
-    overflow: hidden;
-  }
-}
-
-@media only screen and (min-width: 1101px) {
-  .card .card-image img {
-    display: block;
-    border-radius: 2px 2px 0 0;
-    position: relative;
-    left: 0;
-    right: 0;
-    top: -110px;
-    bottom: 0;
-    width: 100%;
-    vertical-align: bottom;
-    overflow: hidden;
-  }
-}
-
-.card .card-image .card-title {
-  color: #fff;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-width: 100%;
-  padding: 24px;
+.restaurantCardLeft, .restaurantCardRight {
+  margin-top: 10px;
 }
 
 .card .card-content {
   padding: 10px;
   border-radius: 0 0 2px 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .card .card-content p {
@@ -9559,7 +9518,6 @@ nav li a {
   }
 
   .select-restaurant-container h4 {
-    font-family: Roboto, Helvetica Neue, sans-serif !important;
     color: #202020;
     font-size: 30px !important;
     line-height: 32px !important;
@@ -9639,11 +9597,11 @@ nav li a {
   padding-bottom: 0px;
   font-weight: 700;
   max-height: 38px;
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;*/
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden !important;
+  /*overflow: hidden !important;*/
   margin-left: 10px;
   margin-top: 4px;
   margin-bottom: 0px !important;
@@ -9663,6 +9621,7 @@ nav li a {
 }
 
 .card-title p.status {
+  vertical-align: middle;
   font-size: 11px !important;
   text-transform: uppercase !important;
   line-height: 16px !important;
@@ -9689,7 +9648,7 @@ nav li a {
   /*display: -webkit-box;*/
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  overflow: hidden !important;
+  /*overflow: hidden !important;*/
   margin-left: -3px;
   /*margin-top: -5px;*/
 }
@@ -9717,6 +9676,7 @@ nav li a {
   overflow: hidden !important;
   border: 0;
 }
+
 
 @media (min-width: 601px) {
   .restaurant-info-container {
@@ -9800,10 +9760,6 @@ nav li a {
 
 .restaurant-wait-time i {
   margin-left: 4px !important;
-}
-
-.wait-time {
-  float: right;
 }
 
 /*CUSTOMER QUEUE INFO & POSITION INDICATOR*/
@@ -9899,10 +9855,11 @@ nav li a {
     width: 100%;
     position: relative;
     background: #12788E; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, #62DBD5, #12788E); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #62DBD5, #12788E); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #62DBD5, #12788E); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #62DBD5, #12788E); /* Standard syntax */
+    background: -webkit-linear-gradient(bottom, #053C5E 65%, skyblue 100%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, #053C5E 65%, skyblue 100%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, #053C5E 65%, skyblue 100%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to top, #053C5E 65%, skyblue 100%); /* Standard syntax */
+    background-attachment: fixed;
   }
 
   .banner-content {
@@ -9944,15 +9901,16 @@ nav li a {
     background-color: #053C5E !important;
   }
 
-  .date-info {
 
+  .date-info {
     font-size: 18px !important;
     color: #fff !important;
     font-weight: 200 !important;
     line-height: 1 !important;
     top: calc(50%) !important;
-    left: 50%;
-    margin-top: 15px;
+    margin-top: 15px !important;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -9986,7 +9944,7 @@ nav li a {
 }
 
 .date-info {
-
+  margin-top: 15px;
   font-size: 18px !important;
   color: #fff !important;
   font-weight: 200 !important;
@@ -9999,7 +9957,8 @@ nav li a {
   text-transform: uppercase;
   font-weight: normal;
   color: white;
-  background: skyblue;
+  background: linear-gradient(to top, #3b7f9b 0%, skyblue 45%, skyblue 55%, #3b7f9b 100%);
+  background-attachment: fixed;
   border: none;
   border-radius: 10px;
   padding: 10px;
@@ -10071,12 +10030,63 @@ nav li a {
   border-radius: 10px;
 }
 
+@media (max-width: 782px) and (min-width: 768px) {
+  .modalBtn {
+    width: 50% !important;
+  }
+  .modalBtn:first-child {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .card .card-content {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    border-radius: 0 0 2px 2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .card .card-content, .stars, .card-title, .wait-time, .card-title-text {
+    position: relative !important;
+    display: block !important;
+    overflow-y: visible !important;
+    text-align: center !important;
+  }
+
+  .card.hoverable {
+    padding-bottom: 10px !important;
+  }
+
+  .card-title {
+    padding-bottom: 5px !important;
+  }
+
+  .card .card-image {
+    height: 150px;
+  }
+
+  .card-bottom .address {
+    margin-top: 25px !important;
+  }
+}
+
+.card {
+  overflow-y: scroll !important;
+}
+
 body, .date-info {
   font-family: 'Raleway', sans-serif !important;
 }
 
+.card-title {
+  margin-left: 0 !important;
+}
+
 .card-title-text {
   font-family: 'Playfair Display', serif !important;
+  margin-left: 0 !important;
 }
 
 h1, h2, h3, h4, h5, .banner-title {
@@ -10110,4 +10120,28 @@ h1, h2, h3, h4, h5, .banner-title {
 
 .stars {
   margin-top: 5px;
+}
+
+.getRewardBtn {
+  background-color: #10BF7A;
+  font-weight: bold;
+}
+
+.claimedRewardBtn {
+  font-size: 28px;
+  padding: 5px;
+  z-index: 5;
+  margin-bottom: 0 !important;
+  margin-top: 30px;
+}
+
+.claimedRewardSpan {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: normal;
+  padding: 10px;
+  z-index: 5;
+  margin-bottom: 0 !important;
+  margin-top: 30px;
+  font-family: 'Raleway', sans-serif !important;
 }

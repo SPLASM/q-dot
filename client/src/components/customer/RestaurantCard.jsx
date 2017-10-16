@@ -32,39 +32,44 @@ class RestaurantCard extends React.Component {
     return (
       <div className="restaurant-container col-xs-12">
         <div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-          <div className="card small hoverable">
-            <div className="card-image">
-              <img src={image}/>
+          <div className="card hoverable">
+            <div className="card-image" style={{backgroundImage: `url(${image})`}}>
+              {/* <img src={image}/> */}
             </div>
-            <div className="col-sm-7 col-xs-12">
-              <div className="card-title">
-                <p className="card-title-text">{this.props.restaurant.name}</p>
-                <p className="status"><span className="status-circle" style={statusCircle}/>{this.state.restaurantStatus}</p>
+            <div className="card-bottom">
+              <div className="col-sm-7 col-xs-12 restaurantCardLeft">
+                <div className="card-title">
+                  <h3 className="card-title-text">{this.props.restaurant.name}</h3>
+                  <p className="status"><span className="status-circle" style={statusCircle}/>{this.state.restaurantStatus}</p>
+                </div>
+                <div className="card-content address">
+                  {this.props.restaurant.address}
+                </div>
+                <div className="card-content">
+                  <span className="queue-number">groups in queue: {this.props.restaurant.queues.length} </span>
+                </div>
               </div>
-              <div className="card-content">
-                {this.props.restaurant.address}
-              </div>
-              <div className="card-content">
-                <span className="queue-number">groups in queue: {this.props.restaurant.queues.length} </span>
-              </div>
-            </div>
-            <div className="col-sm-5 col-xs-12 restaurantCardRight">
-              <div className="card-content stars">
-                <StarRatingComponent
-                  name={'rating'}
-                  value={Math.round(this.props.restaurant.rating)}
-                  starCount={5}
-                  starColor='#f4d942'
-                  emptyStarColor='#d3d3d3'
-                  editing={false}
-                  renderStarIcon={() => <i className="fa fa-star fa-2x" aria-hidden="true"></i>}
-                />
-              </div>
-              <div className="card-content">
-                <span className="reviewCount">number of reviews: {this.props.restaurant.reviewCount}</span>
-              </div>
-              <div className="card-content">
-                <span className="wait-time">wait time: {this.props.restaurant.total_wait} mins</span>
+              <div className="col-sm-5 col-xs-12 restaurantCardRight">
+                <div className="card-content stars">
+                  <StarRatingComponent
+                    name={'rating'}
+                    value={Number(this.props.restaurant.rating)}
+                    starCount={5}
+                    starColor='#f4d942'
+                    emptyStarColor='#f4d942'
+                    editing={false}
+                    renderStarIcon={(star, rating) => {
+                      return star <= rating ? (<i className="fa fa-star fa-2x" aria-hidden="true"></i>) : (<i className="fa fa-star-o fa-2x" aria-hidden="true"></i>);
+                  }}
+                    renderStarIconHalf={() => <i style={{color: '#f4d942'}} className="fa fa-star-half-o fa-2x" aria-hidden="true"></i>}
+                  />
+                </div>
+                <div className="card-content">
+                  <span className="reviewCount">number of reviews: {this.props.restaurant.reviewCount}</span>
+                </div>
+                <div className="card-content">
+                  <span className="wait-time">wait time: {this.props.restaurant.total_wait} mins</span>
+                </div>
               </div>
             </div>
           </div>

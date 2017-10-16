@@ -179,21 +179,29 @@ class ManagerApp extends React.Component {
           <button className="updateImage" data-toggle="modal" data-target="#change-image">Update Image</button>
           <h1 id="grand-title">{this.state.restaurantInfo.name || 'Restaurant Name'}</h1>
         </div>
-        <div className="container">
-          <div className="row">
+        <div className="col-xs-12">
             <div className="col-md-6">
-              <h2>Total groups in queue</h2>
-              <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
-              <h2>Approximate Wait Time</h2>
-              <div id="number-in-queue">{this.state.restaurantInfo.total_wait}</div>
-              <MenuList getMenu={this.getMenu.bind(this)} updateMenu={this.updateMenu.bind(this)} menu={this.state.menu}/>
-              <ManagerAudit/>
+              <div className="col-xs-12 summary">
+                <h2>Total groups in queue</h2>
+                <div id="number-in-queue">{this.state.restaurantInfo.queues ? this.state.restaurantInfo.queues.length : '0'}</div>
+                <h2>Approximate Wait Time</h2>
+                <div id="number-in-queue">{this.state.restaurantInfo.total_wait}</div>
+              </div>
+              <div className="col-xs-12">
+                <MenuList getMenu={this.getMenu.bind(this)} updateMenu={this.updateMenu.bind(this)} menu={this.state.menu}/>
+              </div>
             </div>
             <div className="col-md-6">
-              <CustomerList updateQueue={this.updateQueue.bind(this)} queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
-              <AnnouncementManager restaurantId={this.state.restaurantId}/>
+              <div className="col-xs-12">
+                <CustomerList updateQueue={this.updateQueue.bind(this)} queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
+              </div>
+              <div className="col-xs-12">
+                <AnnouncementManager restaurantId={this.state.restaurantId}/>
+              </div>
+              <div className="col-xs-12">
+                <ManagerAudit/>
+              </div>
             </div>
-          </div>
         </div>
 
         <ImageModal updateImage={this.updateImage.bind(this)}/>

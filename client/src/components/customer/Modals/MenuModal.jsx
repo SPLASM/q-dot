@@ -16,7 +16,7 @@ const MenuModal = (props) => {
             <h3 className="col-xs-12 text-center">Ordered</h3>
             <ul className="menu col-xs-12" style={{borderBottom: '1px solid lightgray'}}>
               {props.modalOrdered.map((menuItem, index) => {
-                return <MenuListItem remove removeOrder={props.removeOrder} index={index} order={props.order} menuItem={menuItem} key={index}/>
+                return <MenuListItem remove removeOrder={props.removeOrder} index={index} order={props.order} menuItem={menuItem} key={index} reward={props.reward}/>
               })}
             </ul>
             <h3 className="col-xs-12 text-center">Menu</h3>
