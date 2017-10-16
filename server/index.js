@@ -19,16 +19,23 @@ const dummyQueues = require('../database/dummyQueues.js');
 const yelp = require('./yelp.js');
 const sendSMS = require('../helpers/sms.js');
 const requestDistance = require('./googleMaps.js');
+const REDISURL = process.env.REDISTOGO_URL;
+const gmaps_api = process.env.GMAPS_API || require('./credentials/googleAPI.js').api_key;
+
+let redisOptions = {};
+if (REDISURL) {
+  redisOptions.url = REDISURL;
+} else {
+  redisOptions.host = '104.237.154.8';
+  redisOptions.port = 6379;
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //checks if session already exists, if it does, adds req.session to req object
 app.use(session({
-  store: new RedisStore({
-    host: process.env.REDISURL || '104.237.154.8',
-    port: process.env.REDISPORT || 6379
-  }),
+  store: new RedisStore(redisOptions),
   secret: process.env.SESSIONSECRET || 'nyancat',
   cookie: {
     maxAge: 18000000
@@ -281,7 +288,8 @@ app.delete('/announcements/:id', (req, res) => {
 
 //drop database and add dummy data
 app.post('/dummydata', (req, res) => {
-  dummyData.dropDB()
+  console.log(req.headers.host);
+  dummyData.dropDB(req.headers.host)
     .then(() => {
       res.sendStatus(200);
     })
@@ -585,8 +593,10 @@ app.get('/rewards', (req, res) => {
   }
 });
 
+app.get('/gmapsAPI', (req, res) => res.send(gmaps_api));
+
 app.get('*', (req, res) => {
-  if (req.session.queueInfo) {
+  if (req.session && req.session.queueInfo) {
     res.redirect(`/customer/queueinfo?queueId=${req.session.queueInfo.queueId}`);
   } else {
     res.redirect('/customer');

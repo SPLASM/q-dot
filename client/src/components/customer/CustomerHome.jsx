@@ -10,7 +10,6 @@ import MapModal from './Modals/MapModal.jsx';
 import QueueModal from './Modals/QueueModal.jsx';
 import $ from 'jquery';
 import scriptLoader from 'react-async-script-loader';
-const { api_key } = require('../../../../server/credentials/googleAPI.js');
 import { Link } from 'react-router-dom';
 
 class CustomerHome extends React.Component {
@@ -24,8 +23,22 @@ class CustomerHome extends React.Component {
       location: undefined,
       modalMap: undefined,
       travelTime: undefined,
+      api_key: '',
       size: 0
     };
+  }
+
+  componentWillMount() {
+    $.ajax({
+      method: 'GET',
+      url: '/gmapsAPI',
+      success: key => {
+        this.setState({ api_key: key });
+      },
+      failure: (error) => {
+        console.log('failed to fetch gmaps api key', error);
+      }
+    });
   }
 
   componentDidMount() {
@@ -148,7 +161,7 @@ class CustomerHome extends React.Component {
                 <GMap
                   you={!!this.state.location}
                   location={this.state.location}
-                  apiKey={api_key}
+                  apiKey={this.state.api_key}
                 />
               </div>
 
@@ -183,8 +196,7 @@ class CustomerHome extends React.Component {
 
         { this.state.modalRestaurant && <MenuModal modalRestaurant={this.state.modalRestaurant}/> }
 
-        { this.state.modalMap && <MapModal apikey={api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
-
+        { this.state.modalMap && <MapModal apikey={this.state.api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
         <QueueModal restaurant={this.state.currentRestaurant} getGroupSize={size => this.getGroupSize(size)}/>
       </div>
     );
@@ -194,5 +206,5 @@ class CustomerHome extends React.Component {
 // export default CustomerHome;
 
 export default scriptLoader(
-  [`https://maps.googleapis.com/maps/api/js?key=${api_key}`]
+  [`https://maps.googleapis.com/maps/api/js?key=AIzaSyAZcBYx6q5OMe1pL7JrJr8853Z3lP6IRs0`]
 )(CustomerHome);
