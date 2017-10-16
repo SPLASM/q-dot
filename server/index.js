@@ -584,13 +584,27 @@ app.get('/rewards', (req, res) => {
       })
       .then(customer => dbQuery.getCustomerQueueHistory(customer.id))
       .then(queues => {
-        console.log(queues.length);
         const rewardQueues = {
           reservationCount: queues.length - rewardInfo.reservationClaim,
           queueCount: queues.length - rewardInfo.queueClaim
         };
 
         res.send(rewardQueues);
+      });
+  }
+});
+
+app.put('/rewards', (req, res) => {
+  if (!req.user) {
+    res.sendStatus(401);
+  } else if (req.user.restaurantId) {
+    res.redirect('/manager');
+  } else {
+    dbQuery.updateCustomerRewardInfo(req.user.id, req.body)
+      .then(results => res.send(results))
+      .catch(err => {
+        console.error(err);
+        res.sendStatus(400);
       });
   }
 });
