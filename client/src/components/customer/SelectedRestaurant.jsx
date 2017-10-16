@@ -14,7 +14,9 @@ class SelectedRestaurant extends React.Component {
       infoSubmitted: false,
       queueId: 0,
       queuePosition: 0,
-      ready: false
+      ready: false,
+      showForm: false,
+      size: 0
     };
   }
 
@@ -29,6 +31,10 @@ class SelectedRestaurant extends React.Component {
           });
           if (this.state.user) {
             this.submitCustomerInfo();
+          } else {
+            this.setState({
+              showForm: true
+            });
           }
         },
         error: () => {
@@ -41,6 +47,13 @@ class SelectedRestaurant extends React.Component {
   getRestaurant(cb) {
     let path = window.location.pathname.split('/');
     let id = Number(path[path.length - 1]);
+    let urlPath = `/restaurants?restaurantId=${id}`;
+    let size = Number(path[path.length - 2]);
+    if (size) {
+      this.setState({
+        size: size
+      });
+    }
 
     $.ajax({
       method: 'GET',
@@ -65,13 +78,12 @@ class SelectedRestaurant extends React.Component {
   }
 
   submitCustomerInfo() {
-    console.log(this.state.currentRestaurant.id);
     $.ajax({
       method: 'POST',
       url: '/queues',
       data: {
         restaurantId: this.state.currentRestaurant.id,
-        size: 2
+        size: this.state.size
       },
       success: (data) => {
         console.log('this was a successful post request', data);
@@ -99,10 +111,15 @@ class SelectedRestaurant extends React.Component {
       backgroundImage: `url(../${this.state.currentRestaurant.image})`
     };
     return (
-      <div className="selected-restaurant">
-        <RestaurantLogoBanner style={restaurantImg} />
-        <RestaurantInformation restaurant={this.state.currentRestaurant}/>
-        <CustomerInfoForm customerInfoSubmitted={this.customerInfoSubmitted} />
+      <div>
+        { this.state.showForm
+          ? <div className="selected-restaurant">
+            <RestaurantLogoBanner style={restaurantImg} />
+            <RestaurantInformation restaurant={this.state.currentRestaurant}/>
+            <CustomerInfoForm customerInfoSubmitted={this.customerInfoSubmitted} />
+          </div>
+          : null
+        }
       </div>
     );
   }

@@ -7,6 +7,7 @@ import GMap from './GMap.jsx';
 import AnnouncementModal from './Modals/AnnouncementModal.jsx';
 import MenuModal from './Modals/MenuModal.jsx';
 import MapModal from './Modals/MapModal.jsx';
+import QueueModal from './Modals/QueueModal.jsx';
 import $ from 'jquery';
 import scriptLoader from 'react-async-script-loader';
 const { api_key } = require('../../../../server/credentials/googleAPI.js');
@@ -22,12 +23,32 @@ class CustomerHome extends React.Component {
       modalRestaurant: undefined,
       location: undefined,
       modalMap: undefined,
-      travelTime: undefined
+      travelTime: undefined,
+      size: 0
     };
   }
 
   componentDidMount() {
     this.getRestaurantList('San Francisco');
+  }
+
+  componentWillMount() {
+    $.ajax({
+      url: '/userdata',
+      type: 'GET',
+      success: (res) => {
+        this.setState({
+          user: res
+        });
+      },
+      error: () => {
+        console.log('error fetching user data');
+      }
+    });
+  }
+
+  getGroupSize(size) {
+    this.setState({ size: size });
   }
 
   getRestaurantList(city) {
@@ -62,7 +83,7 @@ class CustomerHome extends React.Component {
     $.ajax({
       url: `./menu/${restaurantId}`,
       success: (menu) => {
-        this.showModal.call(this, menu)
+        this.showModal.call(this, menu);
       },
       error: (err) => {
         console.log(err);
@@ -143,7 +164,15 @@ class CustomerHome extends React.Component {
                     <button onClick={this.getMenu.bind(this, restaurant.id)} className="col-xs-12 col-sm-4 col-md-3">Menu</button>
                   </div>
                 </div>
-                <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
+                { this.state.user
+                  ? <div onClick={() => {
+                    this.setState({ currentRestaurant: restaurant });
+                    $('#queue-modal').modal('toggle');
+                  }}>
+                    <RestaurantCard restaurant={restaurant} />
+                  </div>
+                  : <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
+                }
               </div>
             ))}
 
@@ -155,6 +184,8 @@ class CustomerHome extends React.Component {
         { this.state.modalRestaurant && <MenuModal modalRestaurant={this.state.modalRestaurant}/> }
 
         { this.state.modalMap && <MapModal apikey={api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
+
+        <QueueModal restaurant={this.state.currentRestaurant} getGroupSize={size => this.getGroupSize(size)}/>
       </div>
     );
   }
