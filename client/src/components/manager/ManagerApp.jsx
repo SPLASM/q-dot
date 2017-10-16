@@ -180,7 +180,6 @@ class ManagerApp extends React.Component {
           <h1 id="grand-title">{this.state.restaurantInfo.name || 'Restaurant Name'}</h1>
         </div>
         <div className="col-xs-12">
-
             <div className="col-md-6">
               <div className="col-xs-12 summary">
                 <h2>Total groups in queue</h2>
@@ -188,19 +187,20 @@ class ManagerApp extends React.Component {
                 <h2>Approximate Wait Time</h2>
                 <div id="number-in-queue">{this.state.restaurantInfo.total_wait}</div>
               </div>
+              <div className="col-xs-12">
+                <MenuList getMenu={this.getMenu.bind(this)} updateMenu={this.updateMenu.bind(this)} menu={this.state.menu}/>
+              </div>
             </div>
             <div className="col-md-6">
-              <CustomerList updateQueue={this.updateQueue.bind(this)} queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
-            </div>
-
-            <div className="col-md-6">
-              <MenuList getMenu={this.getMenu.bind(this)} updateMenu={this.updateMenu.bind(this)} menu={this.state.menu}/>
-            </div>
-            <div className="col-md-6">
-              <AnnouncementManager restaurantId={this.state.restaurantId}/>
-            </div>
-            <div className="col-md-6">
-              <ManagerAudit/>
+              <div className="col-xs-12">
+                <CustomerList updateQueue={this.updateQueue.bind(this)} queues={this.state.queues} addCustomer={this.addToQueue.bind(this)} removeCustomer={this.removeCustomer.bind(this)} notiCustomer={this.notiCustomer.bind(this)}/>
+              </div>
+              <div className="col-xs-12">
+                <AnnouncementManager restaurantId={this.state.restaurantId}/>
+              </div>
+              <div className="col-xs-12">
+                <ManagerAudit/>
+              </div>
             </div>
         </div>
 

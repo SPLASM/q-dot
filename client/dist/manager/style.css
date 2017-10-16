@@ -119,13 +119,14 @@ h2 {
   border-radius: 10px;
 }
 
-button, button.addQueue {
+button, button.addQueue, .announcements button {
   border: none;
   border-radius: 10px !important;
   padding: 10px !important;
   background-image: none !important;
   text-shadow: none !important;
   box-shadow: none !important;
+  font-family: 'Raleway', serif !important;
 }
 
 .customer-list-entry:hover {
@@ -216,9 +217,47 @@ h3, button.addMenu {
   text-transform: uppercase;
 }
 
+.customer-list {
+  border: 1px solid gray;
+  border-radius: 15px;
+  padding: 20px 5px;
+  max-height: 800px;
+  overflow-y: scroll;
+}
+
 .customer-list-entry p, .customer-list-entry div, .menu-heading, .menu-heading h3 {
   padding-right: 0 !important;
   padding-left: 0 !important;
+}
+
+.announcements h3 {
+  margin-bottom: 20px !important;
+  color: white;
+}
+
+.manager-audit {
+  border: 1px solid gray;
+  border-radius: 15px;
+}
+
+.manager-login-history {
+  border: 1px solid gray;
+}
+
+div.announcements {
+  background: #053C5E;
+  border-radius: 15px;
+  max-height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #053C5E;
+}
+
+table {
+  border-radius: 10px;
+}
+
+.summary, .customer-list, .menu-container, div.announcements, .manager-audit {
+  margin-bottom: 30px;
 }
 
 @media(max-width:975px) {

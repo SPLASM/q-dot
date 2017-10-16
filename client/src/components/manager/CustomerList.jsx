@@ -74,7 +74,7 @@ class CustomerList extends React.Component {
 
     let removeCustomer = (status) => this.props.removeCustomer(this.state.modalQueue.id, status);
     return (
-      <div>
+      <div className="customer-list col-xs-12">
         <h3 className="customer-list-head col-sm-8 col-xs-9">Customers in Queue</h3>
         <AddToQueue addCustomer={this.props.addCustomer.bind(this)}/>
         <div className="panel panel-default col-xs-12" id="sortable" style={{border: 'none', width: '100%'}}>
