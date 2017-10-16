@@ -42,7 +42,7 @@ class RestaurantCard extends React.Component {
                   <h3 className="card-title-text">{this.props.restaurant.name}</h3>
                   <p className="status"><span className="status-circle" style={statusCircle}/>{this.state.restaurantStatus}</p>
                 </div>
-                <div className="card-content">
+                <div className="card-content address">
                   {this.props.restaurant.address}
                 </div>
                 <div className="card-content">
@@ -53,12 +53,15 @@ class RestaurantCard extends React.Component {
                 <div className="card-content stars">
                   <StarRatingComponent
                     name={'rating'}
-                    value={Math.round(this.props.restaurant.rating)}
+                    value={Number(this.props.restaurant.rating)}
                     starCount={5}
                     starColor='#f4d942'
-                    emptyStarColor='#d3d3d3'
+                    emptyStarColor='#f4d942'
                     editing={false}
-                    renderStarIcon={() => <i className="fa fa-star fa-2x" aria-hidden="true"></i>}
+                    renderStarIcon={(star, rating) => {
+                      return star <= rating ? (<i className="fa fa-star fa-2x" aria-hidden="true"></i>) : (<i className="fa fa-star-o fa-2x" aria-hidden="true"></i>);
+                  }}
+                    renderStarIconHalf={() => <i style={{color: '#f4d942'}} className="fa fa-star-half-o fa-2x" aria-hidden="true"></i>}
                   />
                 </div>
                 <div className="card-content">
