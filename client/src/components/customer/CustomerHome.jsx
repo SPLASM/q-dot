@@ -7,6 +7,7 @@ import GMap from './GMap.jsx';
 import AnnouncementModal from './Modals/AnnouncementModal.jsx';
 import MenuModal from './Modals/MenuModal.jsx';
 import MapModal from './Modals/MapModal.jsx';
+import QueueModal from './Modals/QueueModal.jsx';
 import $ from 'jquery';
 import scriptLoader from 'react-async-script-loader';
 import { Link } from 'react-router-dom';
@@ -22,7 +23,8 @@ class CustomerHome extends React.Component {
       location: undefined,
       modalMap: undefined,
       travelTime: undefined,
-      api_key: ''
+      api_key: '',
+      size: 0
     };
   }
 
@@ -41,6 +43,25 @@ class CustomerHome extends React.Component {
 
   componentDidMount() {
     this.getRestaurantList('San Francisco');
+  }
+
+  componentWillMount() {
+    $.ajax({
+      url: '/userdata',
+      type: 'GET',
+      success: (res) => {
+        this.setState({
+          user: res
+        });
+      },
+      error: () => {
+        console.log('error fetching user data');
+      }
+    });
+  }
+
+  getGroupSize(size) {
+    this.setState({ size: size });
   }
 
   getRestaurantList(city) {
@@ -75,7 +96,7 @@ class CustomerHome extends React.Component {
     $.ajax({
       url: `./menu/${restaurantId}`,
       success: (menu) => {
-        this.showModal.call(this, menu)
+        this.showModal.call(this, menu);
       },
       error: (err) => {
         console.log(err);
@@ -151,12 +172,20 @@ class CustomerHome extends React.Component {
               <div className="col-xs-12" key={restaurant.id}>
                 <div className="col-xs-12">
                   <div className="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-3 col-md-offset-3">Announcements ({restaurant.announcements.length})</button>
+                    <button onClick={() => this.showAnnModal(restaurant)} className="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-0 col-md-4 col-md-offset-2">Announcements ({restaurant.announcements.length})</button>
                     <button onClick={this.showMap.bind(this, restaurant)} className="col-xs-12 col-sm-4 col-md-3">Map</button>
                     <button onClick={this.getMenu.bind(this, restaurant.id)} className="col-xs-12 col-sm-4 col-md-3">Menu</button>
                   </div>
                 </div>
-                <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
+                { this.state.user
+                  ? <div onClick={() => {
+                    this.setState({ currentRestaurant: restaurant });
+                    $('#queue-modal').modal('toggle');
+                  }}>
+                    <RestaurantCard restaurant={restaurant} />
+                  </div>
+                  : <Link to={`/restaurant/${restaurant.name}/${restaurant.id}`}><RestaurantCard restaurant={restaurant}/></Link>
+                }
               </div>
             ))}
 
@@ -168,6 +197,7 @@ class CustomerHome extends React.Component {
         { this.state.modalRestaurant && <MenuModal modalRestaurant={this.state.modalRestaurant}/> }
 
         { this.state.modalMap && <MapModal apikey={this.state.api_key} modalMap={this.state.modalMap} location={this.state.location} travelTime={this.state.travelTime} getTravelTime={this.travelTime.bind(this)}/> }
+        <QueueModal restaurant={this.state.currentRestaurant} getGroupSize={size => this.getGroupSize(size)}/>
       </div>
     );
   }
