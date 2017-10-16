@@ -92,11 +92,11 @@ class MenuList extends React.Component {
     </div>);
 
     return (
-      <div className="col-xs-12">
-        <div className="col-xs-12 menu-container">
-          <div className="col-xs-12">
+      <div>
+        <div className="menu-container col-xs-12">
+          <div className="col-xs-12 menu-heading">
             <h3 className="col-xs-8">Menu</h3>
-            <button className="col-xs-4" onClick={this.showModal.bind(this, 'POST', 'Add')}>Add Dish</button>
+            <button className="col-xs-4 addMenu" onClick={this.showModal.bind(this, 'POST', 'Add')}>Add Dish</button>
           </div>
           <ul id="sortable-menu" className="menu col-xs-12">
             {this.props.menu.map((menuItem, index) => {

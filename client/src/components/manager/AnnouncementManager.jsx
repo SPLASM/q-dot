@@ -176,31 +176,35 @@ class AnnouncementManager extends React.Component {
             </div>
           </div>
         </div>
-        <div className="panel panel-default">
-          <div className="table-responsive">
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Announcement</th>
-                  <th>Status</th>
-                  <th>Time</th>
-                  <th><button data-toggle="modal" data-target="#announcement-editor" onClick={() => this.populateModal()}>Add New</button></th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.announcements.map(announcement => {
-                  return (
-                    <tr key={announcement.id}>
-                      <td>{announcement.message}</td>
-                      <td>{announcement.status}</td>
-                      <td>{announcement.updatedAt}</td>
-                      <td><button data-toggle="modal" data-target="#announcement-editor" onClick={()=> this.populateModal(announcement)}>edit</button></td>
-                      <td onClick={() => this.deleteAnnouncement(announcement.id)}><button>Delete</button></td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+
+        <div className="col-xs-12 announcements">
+          <h3 className="col-xs-9">Announcements</h3>
+          <button className="col-xs-3 btn btn-success addMenu" data-toggle="modal" data-target="#announcement-editor" onClick={() => this.populateModal()}>Add New</button>
+          <div className="panel panel-default col-xs-12">
+            <div className="table-responsive">
+              <table className="table table-striped announcements">
+                <thead>
+                  <tr>
+                    <th>Announcement</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.announcements.map(announcement => {
+                    return (
+                      <tr key={announcement.id}>
+                        <td>{announcement.message}</td>
+                        <td>{announcement.status}</td>
+                        <td>{announcement.updatedAt}</td>
+                        <td><button className="btn btn-warning" data-toggle="modal" data-target="#announcement-editor" onClick={()=> this.populateModal(announcement)}>edit</button></td>
+                        <td onClick={() => this.deleteAnnouncement(announcement.id)}><button className="btn btn-danger">delete</button></td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

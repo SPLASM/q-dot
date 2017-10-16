@@ -3,19 +3,16 @@ import StatusSwitch from './StatusSwitch.jsx';
 
 const Nav = (props) => {
   return (
-    <nav className="navbar navbar-default justify-content-end col-xs-12">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <a className="navbar-brand" href="#">q.</a>
+    <nav className="col-xs-12">
+        <div className="col-sm-1 col-xs-2">
+          <a className="navbar-brand col-xs-12" href="#">q.</a>
         </div>
-        <ul className="nav navbar-nav">
-          <li className="active"><a href="#">Manager Home Page</a></li>
+        <ul className="col-sm-3 col-xs-10 link" style={{padding: '16px'}}>
+          <li className="active"><a href="#" className="col-xs-12">Manager Home Page</a></li>
         </ul>
-        <ul className="nav navbar-nav navbar-right">
+        <ul className="col-sm-8 col-xs-12">
           <StatusSwitch status={props.status} switchStatus={props.switchStatus.bind(this)}/>
-          <button className="btn btn-danger navbar-btn log-out" onClick={e => location.href = '/logout'}><i className="fa fa-sign-out fa-fw" aria-hidden="true"></i>Logout</button>
         </ul>
-      </div>
     </nav>
   );
 };

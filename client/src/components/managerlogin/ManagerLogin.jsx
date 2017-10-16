@@ -55,13 +55,13 @@ class ManagerLogin extends React.Component {
     } else {
       return (
         <div className='container'>
-          <form className='form-signin' onSubmit={this.submitHandler.bind(this)}>
-            <h2 className='form-signin-heading'>Log in</h2>
+          <form className='form-signin col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4' onSubmit={this.submitHandler.bind(this)}>
+            <h2 className='form-signin-heading col-xs-12 text-center'>Log in</h2>
             <label className='sr-only'>Email address</label>
             <input
               value={this.state.username}
               type='username'
-              className='form-control'
+              className='form-control col-xs-12'
               placeholder='username'
               required autoFocus
               onChange={(e) => this.updateInputFields(e, 'username')}
@@ -70,23 +70,25 @@ class ManagerLogin extends React.Component {
             <input
               value={this.state.password}
               type='password'
-              className='form-control'
-              placeholder='Password'
+              className='form-control col-xs-12'
+              placeholder='password'
               required
               onChange={(e) => this.updateInputFields(e, 'password')}
             />
-            <button className='btn btn-lg btn-primary btn-block' type='submit'>Log in</button>
+            <button className='btn btn-lg btn-primary btn-block col-xs-12' type='submit'>Log in</button>
             <br />
             {
               this.state.unauthorised ?
-                <div className="alert alert-danger">
+                <div className="alert alert-danger col-xs-12">
                 invalid credentials - please try again!
                 </div>
                 : null
             }
           </form>
-          <div className="redir">New user?</div>
-          <button onClick={(e) => (this.togglePath.call(this, e, 'signup'))} className='btn btn-lg btn-primary btn-block'>Sign up</button>
+          <div className="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <div className="redir col-xs-12">New user?</div>
+            <button onClick={(e) => (this.togglePath.call(this, e, 'signup'))} className='btn btn-lg btn-primary btn-block col-xs-12'>Sign up</button>
+          </div>
         </div>
       );
     }

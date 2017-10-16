@@ -71,8 +71,8 @@ class ManagerSignup extends React.Component {
   render() {
     return(
       <div className='container'>
-        <form className='form-signin' onSubmit={this.submitHandler.bind(this)}>
-          <h2 className='form-signin-heading'>Sign Up</h2>
+        <form className='form-signin col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4' onSubmit={this.submitHandler.bind(this)}>
+          <h2 className='form-signin-heading col-xs-12 text-center'>Sign Up</h2>
           <label className='sr-only'>Email address</label>
           <input
             value={this.state.username}
@@ -87,7 +87,7 @@ class ManagerSignup extends React.Component {
             value={this.state.password}
             type='password'
             className='form-control'
-            placeholder='Password'
+            placeholder='password'
             required
             onChange={(e) => this.updateInputFields(e, 'password')}
           />
@@ -95,8 +95,8 @@ class ManagerSignup extends React.Component {
           <input
             value={this.state.city}
             type='text'
-            className='form-control'
-            placeholder='City'
+            className='form-control col-xs-12'
+            placeholder='city'
             required
             onChange={(e) => this.updateInputFields(e, 'city')}
           />
@@ -105,8 +105,8 @@ class ManagerSignup extends React.Component {
             value={this.state.restaurant}
             type='text'
             list = 'restaurants'
-            className='form-control'
-            placeholder='Restaurant'
+            className='form-control col-xs-12'
+            placeholder='restaurant'
             required
             onChange={(e) => this.updateInputFields(e, 'restaurant')}
           />
@@ -119,14 +119,16 @@ class ManagerSignup extends React.Component {
           <br />
           {
             this.state.unauthorised ?
-              <div className="alert alert-danger">
+              <div className="alert alert-danger col-xs-12">
               username already exists - please try again!
               </div>
               : null
           }
         </form>
-        <div className="redir">Already have an account?</div>
-        <button onClick={this.togglePath.bind(this)} className='btn btn-lg btn-primary btn-block'>Login</button>
+        <div className="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+          <div className="redir col-xs-12">Already have an account?</div>
+          <button onClick={this.togglePath.bind(this)} className='btn btn-lg btn-primary btn-block col-xs-12'>Login</button>
+        </div>
       </div>
     );
   }
