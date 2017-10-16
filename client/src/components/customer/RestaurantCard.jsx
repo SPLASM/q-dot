@@ -45,12 +45,12 @@ class RestaurantCard extends React.Component {
                 {this.props.restaurant.address}
               </div>
               <div className="card-content">
-                <span className="queue-number">groups in queue: {this.props.restaurant.queues.length} </span>               
+                <span className="queue-number">groups in queue: {this.props.restaurant.queues.length} </span>
               </div>
             </div>
             <div className="col-sm-5 col-xs-12 restaurantCardRight">
               <div className="card-content stars">
-                <StarRatingComponent 
+                <StarRatingComponent
                   name={'rating'}
                   value={Math.round(this.props.restaurant.rating)}
                   starCount={5}
@@ -64,7 +64,7 @@ class RestaurantCard extends React.Component {
                 <span className="reviewCount">number of reviews: {this.props.restaurant.reviewCount}</span>
               </div>
               <div className="card-content">
-                <span className="wait-time">wait time: {this.props.restaurant.total_wait - this.props.restaurant.average_wait} mins</span>
+                <span className="wait-time">wait time: {this.props.restaurant.total_wait} mins</span>
               </div>
             </div>
           </div>
